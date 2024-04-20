@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "@mantine/core/styles.css";
+import { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { MantineProvider } from "@mantine/core";
+
+const Header = lazy(() => import("./component/Header"));
+const Statistics = lazy(() => import("./pages/Statistics"));
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MantineProvider>
+        <Router>
+          <Header />
+          <Suspense fallback={<h1>"Loading...</h1>}>
+            <Routes>
+              <Route path="/" element={<Statistics />} />
+            </Routes>
+          </Suspense>
+        </Router>
+      </MantineProvider>
     </div>
   );
 }
