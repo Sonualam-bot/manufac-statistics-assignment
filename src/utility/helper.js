@@ -21,7 +21,7 @@ export const calculateMean = (arr, property) => {
   }, 0);
 
   // Calculate the mean by dividing the sum by the number of elements
-  const mean = Math.round(sum / arr.length);
+  const mean = (sum / arr.length).toFixed(3);
 
   return mean;
 };
@@ -37,12 +37,13 @@ export const calculateMedian = (arr, property) => {
   numericValues.sort((a, b) => a - b);
 
   if (length % 2 === 0) {
-    return Math.round(
-      (numericValues[length / 2 - 1] + numericValues[length / 2]) / 2
-    );
+    return (
+      (numericValues[length / 2 - 1] + numericValues[length / 2]) /
+      2
+    ).toFixed(3);
   }
 
-  return Math.round(numericValues[(length - 1) / 2]);
+  return numericValues[(length - 1) / 2].toFixed(3);
 };
 
 export const calculateMode = (arr, property) => {
@@ -68,5 +69,5 @@ export const calculateMode = (arr, property) => {
     modeValue = parseFloat(modeValue);
   }
 
-  return Math.round(modeValue);
+  return modeValue.toFixed(3);
 };
